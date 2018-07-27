@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>The Psychic Game</title>
+</head>
+
+<body>
+  <div id="game">
+    <p><h1>The Psychic Game</h1>
+    Guess what letter I'm thinking of</p>
+  </div>  
+
+  <script type="text/javascript">
+   // creates an array that lists out all letters of the alphabet
+   var computerChoices = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+   // creating variables to hold the number of 
+   // wins, losses, guesses left, and user guesses so far
+   var wins = 0; //when player wins, increase the wins counter and start the game over again.
+   var losses = 0; //# of times user has failed to guess the letter correctly, to display after exhausting all guesses
+   var guessesLeft = 10; // this will update by reducing 
+   //var guessesSoFar = userGuess; // specific letters user typed. Display until user wins or loses.
+
+   //when player wins, increase the Wins counter and start game over again (without refreshing the page)
+   //when player loses, increase the Losses counter and restart the game without a page refresh (just like when user wins)
+
+   // function is run whenever user presses a key
+   document.onkeyup = function(event) {
+     //determines which key user pressed
+     var userGuess = event.key;
+     //CPU randomly chooses a choice from the computerChoices array. CPU's guess.
+     var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+     //run the following code block if user presses a letter key in the array.
+      if ((userGuess === "a") || (userGuess ==="b") || (userGuess ==="c") || (userGuess ==="d") || (userGuess === "e") || (userGuess ==="f") || (userGuess ==="g") || (userGuess ==="h") || (userGuess ==="i") || (userGuess ==="j") || (userGuess ==="k") || (userGuess ==="l") || (userGuess ==="m") || (userGuess ==="n") || (userGuess ==="o") || (userGuess ==="p") || (userGuess ==="q") || (userGuess ==="r") || (userGuess ==="s") || (userGuess ==="t") || (userGuess ==="u") || (userGuess ==="v") || (userGuess ==="w") || (userGuess ==="x") || (userGuess ==="y") || (userGuess ==="z")) {
+        // if user chooses the same letter as CPU, add to wins
+        if (userGuess === computerGuess) {
+          wins++;
+        }
+        // if user chooses a different letter than CPU, add to losses
+        if (userGuess !== computerGuess) {
+          losses++;
+        }
+        // if user chooses a letter, then subtract a unit from ten
+        if (userGuess) {
+          guessesLeft--;
+        }
+        // if user chooses a letter, that letter is recorded here
+        // if (userGuess) { document.userGuess;}
+
+        // variable to hold our new HTML. Our HTML now keeps track of the user guesses, and wins and losses.
+        var html =
+          "<p><h1>The Psychic Game</h1></p>" +
+          "<p>Guess what letter I'm thinking of</p>" +
+          "<p>wins: " + wins + "</p>" +
+          "<p>losses: " + losses + "</p>" +
+          "<p>Guesses Left: " + guessesLeft + "</p>" +
+          "<p>Your guesses so far: " + userGuess + "</p>";
+        // set inner html contents of the #game div to our html string
+        document.querySelector("#game").innerHTML = html;
+      }
+   };
+  </script>
+  
+
+</body>
+
+</html>
