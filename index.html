@@ -31,11 +31,15 @@
      var userGuess = event.key;
      //CPU randomly chooses a choice from the computerChoices array. CPU's guess.
      var computerGuess = computerChoices[Math.floor(Math.random() * computerChoices.length)];
+
+// onkeyup"... when user guesses/keyup, then display...
+
      //run the following code block if user presses a letter key in the array.
       if ((userGuess === "a") || (userGuess ==="b") || (userGuess ==="c") || (userGuess ==="d") || (userGuess === "e") || (userGuess ==="f") || (userGuess ==="g") || (userGuess ==="h") || (userGuess ==="i") || (userGuess ==="j") || (userGuess ==="k") || (userGuess ==="l") || (userGuess ==="m") || (userGuess ==="n") || (userGuess ==="o") || (userGuess ==="p") || (userGuess ==="q") || (userGuess ==="r") || (userGuess ==="s") || (userGuess ==="t") || (userGuess ==="u") || (userGuess ==="v") || (userGuess ==="w") || (userGuess ==="x") || (userGuess ==="y") || (userGuess ==="z")) {
-        // if user chooses the same letter as CPU, add to wins
+        // if user chooses the same letter as CPU, add to wins and refresh page
         if (userGuess === computerGuess) {
           wins++;
+          document.location.reload(true);
         }
         // if user chooses a different letter than CPU, add to losses
         if (userGuess !== computerGuess) {
@@ -45,6 +49,12 @@
         if (userGuess) {
           guessesLeft--;
         }
+
+        // if zero guesses left, then refresh page
+        if (guessesLeft === 0){
+          document.location.reload(true);
+        }
+
         // if user chooses a letter, that letter is recorded here
         // if (userGuess) { document.userGuess;}
 
@@ -63,6 +73,7 @@
   </script>
   
 
+  </a></p>
 </body>
 
 </html>
